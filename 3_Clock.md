@@ -1,6 +1,6 @@
 Create a function that calculates the time elapsed in milliseconds since midnight based on the input values representing hours (h), minutes (m), and seconds (s) displayed on a clock.
 
-Given `clock`table with these columns`:
+Given `clock` table with these columns`:
 * *h*: Hours displayed on the clock (0 to 23)
 * *m*: Minutes displayed on the clock (0 to 59)
 * *s*: Seconds displayed on the clock (0 to 59)
