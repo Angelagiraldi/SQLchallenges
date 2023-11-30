@@ -23,4 +23,4 @@ WHERE IsActive;
 ```
 
 
-There is no need to set *IsActive* to True because by saying `Where IsActive`is already only validating and showing only True values.
+**There is no need to set *IsActive* to True because by saying `Where IsActive`is already only validating and showing only True values.**
