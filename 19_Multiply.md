@@ -1,0 +1,26 @@
+This code does not execute properly. Try to figure out why.
+
+--Initial code--
+
+```
+SELECT 
+    price + amount AS total 
+FROM items
+```
+
+It does not return the expected result. 
+
+***
+
+The task is to multiply the two columns, not simply add them together.
+
+A possible solution:
+
+```
+SELECT 
+    price * amount AS total 
+FROM items 
+```
+
+
+**Just change the + to a * to multiply the two columns.***
