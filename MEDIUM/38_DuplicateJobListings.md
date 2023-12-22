@@ -35,3 +35,29 @@ There is one company ID 345 that posted duplicate job listings. The duplicate li
 *** 
 
 A possible solution is:
+
+```
+WITH job_count_cte AS (
+SELECT 
+  company_id, 
+  title, 
+  description, 
+  COUNT(job_id) AS job_count
+FROM job_listings
+GROUP BY title, description, company_id
+)
+SELECT COUNT(DISTINCT company_id) AS duplicate_companies
+FROM job_count_cte
+WHERE job_count>1
+```
+
+* **WITH job_count_cte AS (** Begins a Common Table Expression (CTE) named job_count_cte. A CTE creates a temporary result set that can be referred to within the SQL statement.
+    * **SELECT company_id, title, description, COUNT(job_id) AS job_count** Within the CTE, this SELECT statement chooses the company_id, title, and description columns from the job_listings table.
+    * **COUNT(job_id) AS job_count** computes the number of job listings (job_id) for each unique combination of company_id, title, and description. The alias job_count is used for this count.
+    * **FROM job_listings** Indicates that the data is sourced from the job_listings table.
+    * **GROUP BY title, description, company_id** The data is grouped by title, description, and company_id, which is necessary for the COUNT function to accurately calculate the number of job listings for each group.
+* **)** Ends the CTE definition.
+* **SELECT COUNT(DISTINCT company_id) AS duplicate_companies** After defining the CTE, this line counts the distinct company_ids. The DISTINCT keyword ensures that each company_id is counted only once, regardless of how many duplicate job listings it might have.
+The result of this count is aliased as duplicate_companies.
+* **FROM job_count_cte** Specifies that the data for this portion of the query is sourced from the CTE job_count_cte.
+* **WHERE job_count>1** This WHERE clause filters the results to include only those records where job_count is greater than 1, i.e., where a company has listed the same job (same title and description) more than once.
