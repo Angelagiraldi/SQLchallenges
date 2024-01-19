@@ -34,3 +34,12 @@ WHERE order_occurrences =
   (SELECT MAX(order_occurrences) FROM items_per_order)
 ORDER BY item_count
 ```
+
+
+* **SELECT item_count FROM items_per_order**
+Selects the item_count from the items_per_order table.
+* **WHERE order_occurrences = (SELECT MAX(order_occurrences) FROM items_per_order)**
+    * Filters the results to include only rows where the order_occurrences is equal to the maximum number of occurrences in the entire items_per_order table.
+    * The subquery (SELECT MAX(order_occurrences) FROM items_per_order) calculates the maximum value of order_occurrences in the table.
+* **ORDER BY item_count**
+Orders the results by item_count in ascending order.
